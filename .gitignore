@@ -3,3 +3,7 @@ tools/photo-collage-master
 .vscode
 /**/*.jpg
 /**/*.png
+experiments
+
+.env
+tools
