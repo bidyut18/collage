@@ -1,5 +1,4 @@
-export interface UserOptions {
-  suapbaseSouces: string[];
+export interface CollageOptions {
   width: number;
   height: number;
   spacing: number;
@@ -18,3 +17,14 @@ export interface FindOptions {
 export type WithRequiredFindOptions<T, K extends keyof T> = T & {
   [Property in K]-?: T[Property];
 };
+
+export interface ImageRequest {
+  imgPaths: string[];
+  spacing: number;
+  collageGrid: "3x2" | "3x3";
+}
+
+export interface ImageResponse {
+  img: Blob;
+  name: string;
+}
