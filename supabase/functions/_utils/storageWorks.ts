@@ -1,4 +1,5 @@
-import { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@1.35.6";
+import { SupabaseClient } from "../_shared/deps.ts";
+import { rootFilePath } from "../_shared/adminSuper.ts";
 import { FindOptions, WithRequiredFindOptions } from "../_shared/types.ts";
 
 export class SuperStorage {
@@ -39,7 +40,21 @@ export class SuperStorage {
     return new Uint8Array(buffer);
   }
 
-  imagePathConverter(folder: string, name: string): string {
-    return `${folder}/${name}`;
+  private imagePathConverter(folder: string, name: string): string {
+    return `${rootFilePath}/${folder}/${name}`;
+  }
+  /*
+   * Deletes the uploaded images
+   */
+  async deleteImages(img_folder: string) {
+    // Delete a list of files
+    const { error } = await this.superAdminClient.storage
+      .from(this.bucket)
+      .remove([`public/${img_folder}/*`]);
+    if (error) {
+      throw new Error("Error occured in deleting images");
+    } else {
+      return { task: "Deleted files", time: new Date().toUTCString() };
+    }
   }
 }

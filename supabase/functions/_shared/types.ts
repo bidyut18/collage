@@ -2,7 +2,6 @@ export interface CollageOptions {
   width: number;
   height: number;
   spacing: number;
-  backgroudColor: string;
   imageWidth: number;
   imageHeight: number;
 }
@@ -22,9 +21,11 @@ export interface ImageRequest {
   imgPaths: string[];
   spacing: number;
   collageGrid: "3x2" | "3x3";
+  folderName: string;
 }
 
-export interface ImageResponse {
-  img: Blob;
-  name: string;
-}
+export const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey",
+  engine: Deno.env.get("ENGINE") || "f(x)^edge",
+};
