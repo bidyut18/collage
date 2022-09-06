@@ -25,6 +25,7 @@ export const collageCreation = async (
     const img = await collage.collageMaker();
     return img;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

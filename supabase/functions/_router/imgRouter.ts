@@ -20,7 +20,6 @@ export const collageHandler = async (req: Request): Promise<Response> => {
       value.spacing,
       value.folderName
     );
-    console.log("Request Came at " + getTime());
     return new Response(collage, {
       headers: {
         ...corsHeaders,
