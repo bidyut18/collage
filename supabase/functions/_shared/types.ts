@@ -13,9 +13,11 @@ export interface FindOptions {
   imgName?: string;
 }
 
-export type WithRequiredFindOptions<T, K extends keyof T> = T & {
-  [Property in K]-?: T[Property];
-};
+export type WithRequiredFindOptions<T, K extends keyof T> =
+  & T
+  & {
+    [Property in K]-?: T[Property];
+  };
 
 export interface ImageRequest {
   imgPaths: string[];

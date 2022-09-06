@@ -1,8 +1,6 @@
 tools/photo-collage-master
 *.code-workspace
 .vscode
-/**/*.jpg
-/**/*.png
 experiments
 
 .env

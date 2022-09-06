@@ -7,7 +7,7 @@ export const collageCreation = async (
   height: number,
   images: string[],
   spacing: number,
-  folderName: string
+  folderName: string,
 ) => {
   const storage = new SuperStorage(supabaseClient, "production");
   try {

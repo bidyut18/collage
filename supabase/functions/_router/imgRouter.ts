@@ -18,7 +18,7 @@ export const collageHandler = async (req: Request): Promise<Response> => {
       value.collageGrid == "3x3" ? 3 : 2,
       value.imgPaths,
       value.spacing,
-      value.folderName
+      value.folderName,
     );
     return new Response(collage, {
       headers: {
@@ -29,16 +29,16 @@ export const collageHandler = async (req: Request): Promise<Response> => {
       status: 200,
     });
   } catch (error) {
+    console.error(error);
     return new Response(
       JSON.stringify({
         success: false,
         message: "Server is crashed" + getTime(),
-        reason: JSON.stringify(error),
       }),
       {
         status: Status.InternalServerError,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      },
     );
   }
 };

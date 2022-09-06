@@ -13,14 +13,14 @@ export class SuperStorage {
    * Download Multiple photos
    */
   async findImages(
-    options: WithRequiredFindOptions<FindOptions, "imgNames" | "folder">
+    options: WithRequiredFindOptions<FindOptions, "imgNames" | "folder">,
   ): Promise<Uint8Array[]> {
     const files = await Promise.all(
       options.imgNames.map(async (imageName: string) => {
         return await this.downloadImage({
           folderPath: this.imagePathConverter(options.folder, imageName),
         });
-      })
+      }),
     );
     return files;
   }
@@ -28,7 +28,7 @@ export class SuperStorage {
    * Download a single image.
    */
   async downloadImage(
-    options: WithRequiredFindOptions<FindOptions, "folderPath">
+    options: WithRequiredFindOptions<FindOptions, "folderPath">,
   ): Promise<Uint8Array> {
     const { data, error } = await this.superAdminClient.storage
       .from(this.bucket)
@@ -50,7 +50,7 @@ export class SuperStorage {
     // Delete a list of files
     const { error } = await this.superAdminClient.storage
       .from(this.bucket)
-      .remove([`public/${img_folder}/*`]);
+      .remove([`${rootFilePath}/${img_folder}/*`]);
     if (error) {
       throw new Error("Error occured in deleting images");
     } else {

@@ -21,8 +21,6 @@ const handler: Handler = async (req) => {
   }
 };
 
-console.log("Running on a Flash Dinosour </>(-**-)</> ");
-
 console.log(`Listening on: ${PORT}`);
 
 const server = new Server({ port: PORT as number, handler });

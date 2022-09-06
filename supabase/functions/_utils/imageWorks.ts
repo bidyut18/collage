@@ -17,11 +17,9 @@ export class CollageImage {
     this.imgOptions = options;
   }
   private canvasSizeCalculate(): number[] {
-    const canvasWidth =
-      this.imgOptions.width * this.imgOptions.imageWidth +
+    const canvasWidth = this.imgOptions.width * this.imgOptions.imageWidth +
       (this.imgOptions.width - 1) * this.imgOptions.spacing;
-    const canvasHeight =
-      this.imgOptions.height * this.imgOptions.imageHeight +
+    const canvasHeight = this.imgOptions.height * this.imgOptions.imageHeight +
       (this.imgOptions.height - 1) * this.imgOptions.spacing;
 
     return [Math.floor(canvasWidth), Math.floor(canvasHeight)];
@@ -30,25 +28,21 @@ export class CollageImage {
    * Calculate the x,y coordinates of the next photo to be drawn
    */
   private coordinateCalculator(i: number): number[] {
-    const x =
-      (i % this.imgOptions.width) *
+    const x = (i % this.imgOptions.width) *
       (this.imgOptions.imageWidth + this.imgOptions.spacing);
-    const y =
-      Math.floor(i / this.imgOptions.width) *
+    const y = Math.floor(i / this.imgOptions.width) *
       (this.imgOptions.imageHeight + this.imgOptions.spacing);
     return [Math.floor(x), Math.floor(y)];
   }
   /**
-   *Returns Canvas rendering context
+   * Returns Canvas rendering context
    */
   private canvasCreation(
     width: number,
-    height: number
+    height: number,
   ): [CanvasRenderingContext2D, EmulatedCanvas2D] {
     const imgcanvas = createCanvas(width, height);
-
     const ctx = imgcanvas.getContext("2d");
-
     ctx.fillStyle = this.canvasFillStyle;
     ctx.fillRect(0, 0, width, height);
     return [ctx, imgcanvas];
@@ -66,7 +60,7 @@ export class CollageImage {
         x,
         y,
         this.imgOptions.imageWidth,
-        this.imgOptions.imageHeight
+        this.imgOptions.imageHeight,
       );
     }
 
